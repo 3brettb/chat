@@ -2,9 +2,10 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class ComposerServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -13,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('room.index', 'App\Http\ViewComposers\Room\Index');
+        View::composer('room.create', 'App\Http\ViewComposers\Room\Create');
+        View::composer('room.show', 'App\Http\ViewComposers\Room\Show');
     }
 
     /**
@@ -23,16 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->register_helpers();
-    }
-
-    /**
-     * Register any helper function files
-     *
-     * @return void
-     */
-    private function register_helpers()
-    {
-        require_once  app_path() . '/Resources/Helpers/General.php';
+        //
     }
 }

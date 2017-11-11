@@ -15,9 +15,14 @@ class Room extends Model
         'name', 'user_id',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function users()
     {
-        return $this->belongsToMany(User::class, RoomUser::class);
+        return $this->belongsToMany(User::class, 'room_users');
     }
 
     public function messages()

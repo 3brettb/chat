@@ -17,4 +17,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function(){
+    return redirect()->route('room.index');
+})->name('home');
+
+Route::get('/rooms', 'RoomController@index')->name('room.index');
+Route::resource('/room', 'RoomController');
+
+Route::post('/room/{room}/message', 'RoomController@message')->name('room.message');

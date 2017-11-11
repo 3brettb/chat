@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function rooms()
     {
-        return $this->belongsToMany(Room::class, RoomUser::class);
+        return $this->belongsToMany(Room::class, 'room_users');
     }
 
     public function messages()
